@@ -123,9 +123,11 @@ class LoginController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //setup for pushing up view when keyboard is presented
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)),
+                                               name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
+                                               name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         view.backgroundColor = UIColor.white
         
         nameTextField.delegate = self
@@ -195,11 +197,37 @@ class LoginController: UIViewController, UITextFieldDelegate {
         loginRegisterButton.heightAnchor.constraint(equalToConstant: 52).isActive = true
     }
     
-    @objc func keyboardWillShow(sender: NSNotification) {
-        self.view.frame.origin.y -= 100
+//    @objc func keyboardWillShow(sender: NSNotification) {
+//        self.view.frame.origin.y -= 100
+//    }
+//    @objc func keyboardWillHide(sender: NSNotification) {
+//        self.view.frame.origin.y += 100
+//    }
+    
+   @objc func keyboardWillHide() {
+        self.view.frame.origin.y = 0
     }
-    @objc func keyboardWillHide(sender: NSNotification) {
-        self.view.frame.origin.y += 100
+    
+   @objc  func keyboardWillChange(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if nameTextField.isFirstResponder {
+                self.view.frame.origin.y = -keyboardSize.height+230
+            } else if emailTextField.isFirstResponder {
+                self.view.frame.origin.y = -keyboardSize.height+230
+            } else if passwordTextField.isFirstResponder {
+                self.view.frame.origin.y = -keyboardSize.height+230
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self,
+                                                  name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
