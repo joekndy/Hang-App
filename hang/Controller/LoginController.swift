@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginController: UIViewController {
+class LoginController: UIViewController, UITextFieldDelegate {
     
     let logoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -23,7 +23,7 @@ class LoginController: UIViewController {
         let view = UIView()
         view.backgroundColor = UIColor(red:0.94, green:0.94, blue:0.96, alpha:1.00)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 5
+        view.layer.cornerRadius = 8
         view.layer.masksToBounds = true
         return view
         
@@ -82,7 +82,15 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //setup for pushing up view when keyboard is presented
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         view.backgroundColor = UIColor.white
+        
+        nameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
         
         //adds subviews to main view
         view.addSubview(logoImageView)
@@ -145,6 +153,28 @@ class LoginController: UIViewController {
         loginRegisterButton.topAnchor.constraint(equalTo: inputsContainerView.bottomAnchor, constant: 16).isActive = true
         loginRegisterButton.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -64).isActive = true
         loginRegisterButton.heightAnchor.constraint(equalToConstant: 52).isActive = true
+    }
+    
+    @objc func keyboardWillShow(sender: NSNotification) {
+        self.view.frame.origin.y -= 100
+    }
+    @objc func keyboardWillHide(sender: NSNotification) {
+        self.view.frame.origin.y += 100
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == nameTextField {
+            emailTextField.becomeFirstResponder()
+        } else if textField == emailTextField {
+            passwordTextField.becomeFirstResponder()
+        } else if textField == passwordTextField {
+            textField.resignFirstResponder()
+        }
+        return true
     }
 
 }
