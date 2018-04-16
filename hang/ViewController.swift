@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        let ref = Database.database().reference(fromURL: "https://hang-8b734.firebaseio.com/")
+//
+//        ref.updateChildValues(["someValue": 123123])
         
         //adds logout item to left of navigation controller
         navigationItem.leftBarButtonItem = UIBarButtonItem(title:"logout", style: .plain, target: self, action: #selector(handleLogout))

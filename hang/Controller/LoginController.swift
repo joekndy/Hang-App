@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginController: UIViewController, UITextFieldDelegate {
     
@@ -77,8 +78,30 @@ class LoginController: UIViewController, UITextFieldDelegate {
         button.layer.cornerRadius = 26
         button.layer.masksToBounds = true
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        
+        button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
+        
         return button
     }()
+    
+    @objc func handleRegister() {
+        
+        guard let email = emailTextField.text, let password = passwordTextField.text else {
+            print("form is not valid")
+            return
+        }
+        
+        Auth.auth().createUser(withEmail: email, password: password, completion: { (user: User?, error) in
+            
+            if error != nil {
+                print(error!)
+                return
+            }
+            
+            //successfully authenticated
+            
+        })
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
