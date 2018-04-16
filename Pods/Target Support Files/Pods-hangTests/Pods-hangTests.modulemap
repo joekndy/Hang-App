@@ -1,0 +1,6 @@
+framework module Pods_hangTests {
+  umbrella header "Pods-hangTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
