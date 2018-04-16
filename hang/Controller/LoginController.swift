@@ -86,7 +86,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
     @objc func handleRegister() {
         
-        guard let email = emailTextField.text, let password = passwordTextField.text else {
+        guard let email = emailTextField.text, let password = passwordTextField.text, let name = nameTextField.text else {
             print("form is not valid")
             return
         }
@@ -98,8 +98,25 @@ class LoginController: UIViewController, UITextFieldDelegate {
                 return
             }
             
-            //successfully authenticated
+            guard let uid = user?.uid else {
+                return
+            }
             
+            //successfully authenticated
+            let ref = Database.database().reference(fromURL: "https://hang-8b734.firebaseio.com/")
+            let usersReference = ref.child("users").child(uid)
+            let values = ["name": name, "email": email]
+            usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
+                
+                if err != nil {
+                    print(err!)
+                    return
+                }
+                
+                print("saved user successfully into firebase db")
+                
+            })
+
         })
     }
     
