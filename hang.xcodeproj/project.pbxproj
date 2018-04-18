@@ -20,6 +20,7 @@
 		E4479A53208430B60099FB5B /* hangUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4479A52208430B60099FB5B /* hangUITests.swift */; };
 		E4479A62208437DF0099FB5B /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4479A61208437DF0099FB5B /* LoginController.swift */; };
 		E4479A642084EA5D0099FB5B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4479A632084EA5D0099FB5B /* GoogleService-Info.plist */; };
+		E4479A672086E8410099FB5B /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4479A662086E8410099FB5B /* Users.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		E4479A54208430B60099FB5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4479A61208437DF0099FB5B /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		E4479A632084EA5D0099FB5B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E4479A662086E8410099FB5B /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		ED64D7FD5A0BCFAA0AB71BF4 /* Pods_hangTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hangTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				E4479A632084EA5D0099FB5B /* GoogleService-Info.plist */,
+				E4479A652086E80F0099FB5B /* Model */,
 				E4479A60208437B00099FB5B /* Controller */,
 				E4479A2F208430B40099FB5B /* AppDelegate.swift */,
 				E4479A33208430B40099FB5B /* Main.storyboard */,
@@ -180,6 +183,14 @@
 				E4479A31208430B40099FB5B /* FriendsController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		E4479A652086E80F0099FB5B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E4479A662086E8410099FB5B /* Users.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -402,6 +413,7 @@
 				E4479A32208430B40099FB5B /* FriendsController.swift in Sources */,
 				E4479A62208437DF0099FB5B /* LoginController.swift in Sources */,
 				E4479A38208430B40099FB5B /* hang.xcdatamodeld in Sources */,
+				E4479A672086E8410099FB5B /* Users.swift in Sources */,
 				E4479A30208430B40099FB5B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
