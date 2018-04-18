@@ -11,7 +11,7 @@
 		BCAA7CC7072AEB6E87D278DB /* Pods_hang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FF05CD26EA2E15206858C94 /* Pods_hang.framework */; };
 		CD575A4C614D0D0CCAB317DF /* Pods_hangUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B839B4C2553F92B8C9A6C613 /* Pods_hangUITests.framework */; };
 		E4479A30208430B40099FB5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4479A2F208430B40099FB5B /* AppDelegate.swift */; };
-		E4479A32208430B40099FB5B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4479A31208430B40099FB5B /* ViewController.swift */; };
+		E4479A32208430B40099FB5B /* FriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4479A31208430B40099FB5B /* FriendsController.swift */; };
 		E4479A35208430B40099FB5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4479A33208430B40099FB5B /* Main.storyboard */; };
 		E4479A38208430B40099FB5B /* hang.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E4479A36208430B40099FB5B /* hang.xcdatamodeld */; };
 		E4479A3A208430B60099FB5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4479A39208430B60099FB5B /* Assets.xcassets */; };
@@ -50,7 +50,7 @@
 		E3B3EDF951FD26CD61820A44 /* Pods-hangTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hangTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-hangTests/Pods-hangTests.release.xcconfig"; sourceTree = "<group>"; };
 		E4479A2C208430B40099FB5B /* hang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4479A2F208430B40099FB5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E4479A31208430B40099FB5B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E4479A31208430B40099FB5B /* FriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsController.swift; sourceTree = "<group>"; };
 		E4479A34208430B40099FB5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E4479A37208430B40099FB5B /* hang.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hang.xcdatamodel; sourceTree = "<group>"; };
 		E4479A39208430B60099FB5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -146,7 +146,6 @@
 				E4479A632084EA5D0099FB5B /* GoogleService-Info.plist */,
 				E4479A60208437B00099FB5B /* Controller */,
 				E4479A2F208430B40099FB5B /* AppDelegate.swift */,
-				E4479A31208430B40099FB5B /* ViewController.swift */,
 				E4479A33208430B40099FB5B /* Main.storyboard */,
 				E4479A39208430B60099FB5B /* Assets.xcassets */,
 				E4479A3B208430B60099FB5B /* LaunchScreen.storyboard */,
@@ -178,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				E4479A61208437DF0099FB5B /* LoginController.swift */,
+				E4479A31208430B40099FB5B /* FriendsController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -399,7 +399,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4479A32208430B40099FB5B /* ViewController.swift in Sources */,
+				E4479A32208430B40099FB5B /* FriendsController.swift in Sources */,
 				E4479A62208437DF0099FB5B /* LoginController.swift in Sources */,
 				E4479A38208430B40099FB5B /* hang.xcdatamodeld in Sources */,
 				E4479A30208430B40099FB5B /* AppDelegate.swift in Sources */,
@@ -579,7 +579,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JCM53R4K6M;
 				INFOPLIST_FILE = hang/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.joekndy.hang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -595,7 +598,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JCM53R4K6M;
 				INFOPLIST_FILE = hang/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.joekndy.hang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -612,7 +618,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JCM53R4K6M;
 				INFOPLIST_FILE = hangTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.joekndy.hangTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -630,7 +640,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JCM53R4K6M;
 				INFOPLIST_FILE = hangTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.joekndy.hangTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -647,7 +661,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JCM53R4K6M;
 				INFOPLIST_FILE = hangUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.joekndy.hangUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -664,7 +682,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JCM53R4K6M;
 				INFOPLIST_FILE = hangUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.joekndy.hangUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
