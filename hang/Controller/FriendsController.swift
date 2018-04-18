@@ -13,7 +13,12 @@ class
 FriendsController: UITableViewController {
     
     let cellid = "cellid"
+    let sections = ["Available", "Unavailable"]
     var users = [Users]()
+    var availableUsers = [String]()
+    var unavailableUsers = [String]()
+    var aUser = [Users]()
+    var uUser = [Users]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,26 +38,60 @@ FriendsController: UITableViewController {
             for child in snapshot.children.allObjects as! [DataSnapshot] {
                 if let value = child.value as? NSDictionary {
                     let user = Users()
+                    let key = child.key
+                    let availability = value["available"] as? String ?? "Name not found"
                     let name = value["name"] as? String ?? "Name not found"
                     let email = value["email"] as? String ?? "Email not found"
                     user.name = name
                     user.email = email
+                    user.availability = availability
                     self.users.append(user)
                     DispatchQueue.main.async { self.tableView.reloadData() }
+                    print(user.name, user.availability)
+                    if(user.availability == "true"){
+                        //self.availableUsers.append(key)
+                        self.aUser.append(user)
+                        print("got that");
+                    }else{
+                        //self.unavailableUsers.append(key)
+                        self.uUser.append(user)
+
+                    }
+                    print("availableUsers --")
+                    print(self.availableUsers)
+                    print("unavailableUsers --")
+
+                    print(self.unavailableUsers)
                 }
             }
         }
     }
     
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = self.sections[section]
+        label.backgroundColor = UIColor.lightGray
+        return label
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        
+        if section == 0 {
+            return aUser.count
+
+        }
+        return uUser.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         //hack for now
         let cell = tableView.dequeueReusableCell(withIdentifier: cellid, for: indexPath)
-        let user = users[indexPath.row]
+        let user = indexPath.section == 0 ? aUser[indexPath.row] : uUser[indexPath.row]
         cell.textLabel?.text = user.name
         return cell
     }
@@ -109,6 +148,7 @@ FriendsController: UITableViewController {
     @objc func removeNavigationText() {
         self.navigationItem.title = " "
     }
+
 
 }
 
